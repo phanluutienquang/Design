@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google"; 
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import "./globals.css";
 
 // 1. Khai báo Font (Thêm weight 300 cho mỏng đúng chất kiến trúc)
@@ -32,16 +33,16 @@ export default function RootLayout({
     <html lang="vi">
       {/* Gom tất cả class vào một thẻ body duy nhất */}
       <body className={`${inter.variable} ${cormorantGaramond.variable} antialiased bg-white flex flex-col min-h-screen`}>
-        
-        <Header />
+        <LanguageProvider>
+          <Header />
 
-        {/* Nội dung chính sẽ nằm ở đây */}
-        <main className="flex-1">
-          {children}
-        </main>
+          {/* Nội dung chính sẽ nằm ở đây */}
+          <main className="flex-1">
+            {children}
+          </main>
 
-        <Footer />
-        
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
